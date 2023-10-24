@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import edu.iset4C.formationSpringBoot.entities.Utilisateur;
+import edu.iset4C.formationSpringBoot.requests.FirstNameAndLastNameRequest;
 import edu.iset4C.formationSpringBoot.service.UtilisateurService;
 
 @RestController
@@ -47,6 +48,31 @@ public class Utilisateurcontroller {
 		}
 		
 	}*/
+/*	@GetMapping(path = "/findByFirstNameAndLastName/{firstName}/{lastName}")//http://localhost:8080/utilisateur/findByFirstNameAndLastName/{firstName}/{lastName}
+	public ResponseEntity<List<Utilisateur>>  findUtilisateurByFirstNameAndLastName(@PathVariable String firstName,@PathVariable String lastName) {
+	    List<Utilisateur> utilisateurs = utilisateurService.findByFirstNameAndLastName(firstName,lastName);
+	    if (utilisateurs.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } else {
+	        for (Utilisateur user : utilisateurs){
+	            System.out.println(user);
+	        }
+	        return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
+	    }
+	}     */
+	@GetMapping(path = "/findByFirstNameAndLastNameWithRB")
+	public ResponseEntity<List<Utilisateur>>  findUtilisateurByFirstNameAndLastName(
+		@RequestBody	FirstNameAndLastNameRequest firstNameAndLastNameRequest) {
+	    List<Utilisateur> utilisateurs = utilisateurService.findByFirstNameAndLastNameWithJPQLWithNamedParameters(firstNameAndLastNameRequest.getFirstName(),firstNameAndLastNameRequest.getLastName());
+	    if (utilisateurs.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } else {
+	        for (Utilisateur user : utilisateurs){
+	            System.out.println(user);
+	        }
+	        return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
+	    }
+	} 
 	@GetMapping(path = "/findByFirstName/{firstName}")
 	public ResponseEntity<List<Utilisateur>>  findUtilisateurByFirstName(@PathVariable String firstName) {
 	    List<Utilisateur> utilisateurs = utilisateurService.findByFirstName(firstName);
@@ -59,6 +85,20 @@ public class Utilisateurcontroller {
 	        return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
 	    }
 	}
+	
+	@GetMapping(path = "/findByAge")
+	public ResponseEntity<List<Utilisateur>>  findUtilisateurByAge(@RequestBody List<Integer> ages) {
+	    List<Utilisateur> utilisateurs = utilisateurService.findByAgeIn(ages);
+	    if (utilisateurs.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } else {
+	        for (Utilisateur user : utilisateurs){
+	            System.out.println(user);
+	        }
+	        return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
+	    }
+	}
+	
 	@PostMapping
 	public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
 		return utilisateurService.createUtilisateur(utilisateur);

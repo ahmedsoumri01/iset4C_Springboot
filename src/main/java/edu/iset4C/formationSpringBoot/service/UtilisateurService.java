@@ -15,6 +15,10 @@ public Utilisateur updateUtilisateur(Utilisateur utilisateur);
 void deleteUtilisateur(Long id);
 //methode avancee 
 public List<Utilisateur> findByFirstName(String firstName) ;
+public List<Utilisateur> findByFirstNameAndLastNameWithJPQLWithNamedParameters(String firstName,String lastName) ;
+
+public List <Utilisateur> findByAgeIn(List<Integer> ages);
+
 
 
 }

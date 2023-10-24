@@ -62,6 +62,18 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		return utilisateurRepository.findByFirstName(firstName);
 		
 	}
+	
+	@Override
+	public List<Utilisateur> findByFirstNameAndLastNameWithJPQLWithNamedParameters(String firstName,String lastName){
+		return utilisateurRepository.findByFirstNameAndLastName(firstName, lastName);
+		
+	}
+
+	@Override
+	public List<Utilisateur> findByAgeIn(List<Integer> ages) {
+		
+		return utilisateurRepository.findByAgeIn(ages);
+	}
 
 	
 }
