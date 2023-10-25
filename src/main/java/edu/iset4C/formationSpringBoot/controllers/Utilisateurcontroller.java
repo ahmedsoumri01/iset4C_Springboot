@@ -86,6 +86,7 @@ public class Utilisateurcontroller {
 	    }
 	}
 	
+	
 	@GetMapping(path = "/findByAge")
 	public ResponseEntity<List<Utilisateur>>  findUtilisateurByAge(@RequestBody List<Integer> ages) {
 	    List<Utilisateur> utilisateurs = utilisateurService.findByAgeIn(ages);
@@ -99,6 +100,18 @@ public class Utilisateurcontroller {
 	    }
 	}
 	
+	@GetMapping(path = "/findByRoleTitre/{titre}")
+	public ResponseEntity<List<Utilisateur>>  findByRolesTitre(@PathVariable String titre) {
+	    List<Utilisateur> utilisateurs = utilisateurService.findByRolesTitre(titre);
+	    if (utilisateurs.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } else {
+	        for (Utilisateur user : utilisateurs){
+	            System.out.println(user);
+	        }
+	        return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
+	    }
+	}
 	@PostMapping
 	public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
 		return utilisateurService.createUtilisateur(utilisateur);

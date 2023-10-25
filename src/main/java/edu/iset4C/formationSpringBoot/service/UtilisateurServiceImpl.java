@@ -75,5 +75,12 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		return utilisateurRepository.findByAgeIn(ages);
 	}
 
+	@Override
+	public List<Utilisateur> findByRolesTitre(String titre) {
+		// TODO Auto-generated method stub
+		return utilisateurRepository.findByRolesTitre(titre);
+	}
+
+	
 	
 }

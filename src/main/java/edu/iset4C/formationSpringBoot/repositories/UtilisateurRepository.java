@@ -21,6 +21,12 @@ public List<Utilisateur> findByFirstNameAndLastNameWithJPQL(String firstName,Str
 public List<Utilisateur> findByFirstNameAndLastNameWithJPQLWithNamedParameters(@Param(value = "myFirstName") String firstName, @Param(value = "myLastName") String lastName);
 
 public List< Utilisateur> findByAgeIn(List <Integer> ages);
+
+public List< Utilisateur> findByRolesTitre(String titre);
+
+
+
+
 /*
  * comparisons are case-insensitive
  * @Query("SELECT u FROM Utilisateur u WHERE BINARY u.firstName= ?1 AND BINARY u.lastName= ?2")
