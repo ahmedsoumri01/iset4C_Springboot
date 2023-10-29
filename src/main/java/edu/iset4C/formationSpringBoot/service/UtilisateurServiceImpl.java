@@ -71,14 +71,25 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 
 	@Override
 	public List<Utilisateur> findByAgeIn(List<Integer> ages) {
-		
 		return utilisateurRepository.findByAgeIn(ages);
 	}
 
 	@Override
 	public List<Utilisateur> findByRolesTitre(String titre) {
-		// TODO Auto-generated method stub
 		return utilisateurRepository.findByRolesTitre(titre);
+	}
+/*
+	@Override
+	public List<Utilisateur> findByRolesTitreAndAdresseVille(String titre, String ville) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	*/
+
+	@Override
+	public List<Utilisateur> findByRolesTitreAndAdressesVille(String titre, String ville) {
+		// TODO Auto-generated method stub
+		return utilisateurRepository.findByRolesTitreAndAdressesVille(titre, ville);
 	}
 
 	

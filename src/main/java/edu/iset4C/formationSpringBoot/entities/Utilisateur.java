@@ -35,12 +35,7 @@ private Set<Role> roles;
 @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE},fetch = FetchType.EAGER)
 private Set<Adresse> adresses;
 
-public Set<Adresse> getAdresses() {
-	return adresses;
-}
-public void setAdresses(Set<Adresse> adresses) {
-	this.adresses = adresses;
-}
+
 public Long getId() {
 	return id;
 }
@@ -100,6 +95,13 @@ public Boolean getActive() {
 }
 public void setActive(Boolean active) {
 	this.active = active;
+}
+
+public Set<Adresse> getAdresses() {
+	return adresses;
+}
+public void setAdresses(Set<Adresse> adresses) {
+	this.adresses = adresses;
 }
 
 }

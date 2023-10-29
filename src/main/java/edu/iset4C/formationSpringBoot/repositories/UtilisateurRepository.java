@@ -23,6 +23,9 @@ public List<Utilisateur> findByFirstNameAndLastNameWithJPQLWithNamedParameters(@
 public List< Utilisateur> findByAgeIn(List <Integer> ages);
 
 public List< Utilisateur> findByRolesTitre(String titre);
+public List< Utilisateur> findByRolesTitreAndAdressesVille(String titre,String ville);
+
+/*public List< Utilisateur> findByRolesTitreAndAdresseVille(String titre,String ville);*/
 
 
 

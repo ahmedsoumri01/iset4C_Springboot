@@ -3,6 +3,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,8 @@ public class Utilisateurcontroller {
 	
 	
 	@GetMapping()
+	 
+	 @CrossOrigin
 	public List<Utilisateur> getAllUtilisateur() {
 		return utilisateurService.getAllUtilisateurs();
 	}
@@ -99,7 +102,7 @@ public class Utilisateurcontroller {
 	        return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
 	    }
 	}
-	
+/*	
 	@GetMapping(path = "/findByRoleTitre/{titre}")
 	public ResponseEntity<List<Utilisateur>>  findByRolesTitre(@PathVariable String titre) {
 	    List<Utilisateur> utilisateurs = utilisateurService.findByRolesTitre(titre);
@@ -111,7 +114,19 @@ public class Utilisateurcontroller {
 	        }
 	        return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
 	    }
-	}
+	}     */
+	@GetMapping(path = "/findByRoleTitreAndAdresseVille/{titre}/{ville}")
+	public ResponseEntity<List<Utilisateur>>  findUtilisateurByRoleAndVille(@PathVariable String titre,@PathVariable String ville) {
+	    List<Utilisateur> utilisateurs = utilisateurService.findByRolesTitreAndAdressesVille(titre,ville);
+	    if (utilisateurs.isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } else {
+	        for (Utilisateur user : utilisateurs){
+	            System.out.println(user);
+	        }
+	        return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
+	    }
+	}   
 	@PostMapping
 	public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
 		return utilisateurService.createUtilisateur(utilisateur);
