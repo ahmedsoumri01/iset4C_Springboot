@@ -32,7 +32,7 @@ private Contact contact;
 @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.EAGER)
 private Set<Role> roles;
 
-@OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE},fetch = FetchType.EAGER)
+@OneToMany(mappedBy = "utilisateur",cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE},fetch = FetchType.EAGER)
 private Set<Adresse> adresses;
 
 

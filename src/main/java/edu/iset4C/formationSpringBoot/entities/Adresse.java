@@ -1,9 +1,13 @@
 package edu.iset4C.formationSpringBoot.entities;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Adresse implements Serializable{
@@ -12,8 +16,14 @@ public class Adresse implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String ville;
+	
 	private String codePostale;
 	private String numRue;
+	
+	@ManyToOne
+	@JsonBackReference
+	private Utilisateur utilisateur;
+	
 	public int getId() {
 		return id;
 	}
@@ -38,7 +48,12 @@ public class Adresse implements Serializable{
 	public void setNumRue(String numRue) {
 		this.numRue = numRue;
 	}
-	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 	
 	
 
